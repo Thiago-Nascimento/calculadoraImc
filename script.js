@@ -5,8 +5,8 @@
 // OK   3. Gerar a classificação IMC -> classificacaoImc
 // OK   4. Organizar os dados do usuario para salvar na lista e gerar a data de cadastro
 // OK   5. Inserir o usuario na lista (salvar no localStorage)
-//      6. Função para carregar os usuarios (localStorage), chamar ao carregar a página
-//      7. Renderizar o conteudo da tabela com os usuarios cadastrados
+// OK   6. Função para carregar os usuarios (localStorage), chamar ao carregar a página
+// OK   7. Renderizar o conteudo da tabela com os usuarios cadastrados
 //      8. Botão para limpar os registros (localStorage)
 
 
@@ -32,8 +32,12 @@ function calcular(event) {
 
     // Passo 5
     cadastrarUsuario(usuario)
+    
+    // Esse
+    carregarUsuarios()
 
-
+    // Ou
+    // window.location.reload()
 
 }
 
@@ -126,10 +130,44 @@ function carregarUsuarios() {
         // Se não tiver nenhum usuario cadastrado, mostrar mensagem
         let tabela = document.getElementById("corpo-tabela")
 
-        tabela.innerHTML = "Nenhum usuario cadastrado"
+        tabela.innerHTML = `<tr class="linha-mensagem">
+            <td colspan="6">Nenhum usuario cadastrado ☹ </td>
+        </tr>`
+
+    } else {
+        // Montar conteudo da tabela
+        montarTabela(listaCarregada)
     }
 
     console.log(listaCarregada)
 }
 
 window.addEventListener("DOMContentLoaded", () => carregarUsuarios() )
+
+// Passo 7
+function montarTabela(listaUsuarios) {
+    let tabela = document.getElementById("corpo-tabela")
+
+    let template = ""
+
+    listaUsuarios.forEach(usuario => {
+        template += `<tr>
+            <td data-cell="nome">${usuario.nome}</td>
+            <td data-cell="altura">${usuario.altura}</td>
+            <td data-cell="peso">${usuario.peso}</td>
+            <td data-cell="valor do IMC">${usuario.imc.toFixed(2)}</td>
+            <td data-cell="classificação do IMC">${usuario.situacaoImc}</td>
+            <td data-cell="data de cadastro">${usuario.dataCadastro}</td>
+        </tr>`
+    })
+
+    tabela.innerHTML = template;
+}
+
+function deletarRegistros() {
+    // Remove o item do localStorage
+    localStorage.removeItem("usuariosCadastrados")
+
+    // Recarrega a página
+    window.location.reload()
+}

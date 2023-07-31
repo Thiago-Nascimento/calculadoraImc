@@ -19,18 +19,18 @@
             <form onsubmit="calcular(event)" method="post">
                 <div class="campo-form">
                     <label for="nome">Nome:</label>
-                    <input type="text" name="campo-nome" id="nome" placeholder="Insira seu nome completo" >
+                    <input required type="text" name="campo-nome" id="nome" placeholder="Insira seu nome completo" >
                 </div>
 
                 <div class="campo-form">
                     <label for="altura">Altura:</label>
-                    <input type="number" name="campo-altura" id="altura" step="0.01" min="0.1" max="10"
+                    <input required type="number" name="campo-altura" id="altura" step="0.01" min="0.1" max="10"
                         placeholder="Insira sua altura em metros Ex.: 1.68" >
                 </div>
 
                 <div class="campo-form">
                     <label for="peso">Peso: </label>
-                    <input type="number" name="peso" id="peso" step="0.01" min="0.1" max="500"
+                    <input required type="number" name="peso" id="peso" step="0.01" min="0.1" max="500"
                         placeholder="Insira seu peso em Kg. Ex: 60" >
                 </div>
 
@@ -64,10 +64,10 @@
                         <td data-cell="valor do IMC">21.1</td>
                         <td data-cell="classificação do IMC">Normal</td>
                         <td data-cell="data de cadastro">19/06/2023 21:27</td>
-                    </tr> -->                    
+                    </tr>                     -->
                 </tbody>
             </table>
-            <button class="botao-tabela">Limpar Registros</button>
+            <button onclick="deletarRegistros()" class="botao-tabela">Limpar Registros</button>
         </section>
     </main>
 </body>
